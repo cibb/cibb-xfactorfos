@@ -1,18 +1,30 @@
 # XFactor Fame Or Shame for FiveM
-This script adds the XFactor TV Show dynamics to Fame Or Shame stage in FiveM.
+This simple script adds the XFactor TV Show dynamics to Fame Or Shame stage in FiveM.
 
 Made for an user driven event in [MapachesRP](https://mapachesrp.com/) FiveM server
 
 ## Requirement
-- ESX
+If you don't have experience coding, you will need ESX to use it OOTB. We use ESX ui namespace to create the judge menu.
+
+If you are not using ESX, you may edit [client/menu.lua](client/menu.lua) to implement your custom menu, or throw the server event `cibb-xfactorfos:pressButton` seding the judge ID as the first parameter and the button as second parameter (x, gold, reset)
+
+For example you may create a command to trigger the button logic:
+
+To do that, add this code to any server file
+
+```
+RegisterCommand("fosbutton", function(source, args)
+    TriggerEvent('cibb-xfactorfos:pressButton',source, args[1])
+end, true)
+```
 
 ## Installation
-1- Download the last release
-2- Add this to your server.cfg:
+1. Download the last release
+2. Add this to your server.cfg:
 ```
     ensure cibb-xfactorfos
 ```
-3- Enjoy (Go to Try yourself section to see how to use it)
+3. Enjoy (Go to Try yourself section to see how to use it)
 
 ## Previous configuration
 Before anything you must configure the script. For that, open your local copy of  [config.lua](config.lua) file and change the judges identifiers.
@@ -41,6 +53,9 @@ Questions? Recomendations? Bugs? Contact me on Discord: Cibb#2487
 - The ininite loop to write the X in the judge's head is not really nice. Any way to improve that?
 - I guess that there is a check to avoid play sounds to users that are faraway, but we need test that with other players
 - What happen if I'm late to the party and one or more judges has the X?
+
+## Thanks
+- [plunkettscott/interact-sound](https://github.com/plunkettscott/interact-sound) for the Howler tip to play custom sounds 
 
 ## Legal
 

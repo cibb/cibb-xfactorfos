@@ -3,6 +3,17 @@ This script adds the XFactor TV Show dynamics to Fame Or Shame stage in FiveM.
 
 Made for an user driven event in [MapachesRP](https://mapachesrp.com/) FiveM server
 
+## Requirement
+- ESX
+
+## Installation
+1- Download the last release
+2- Add this to your server.cfg:
+```
+    ensure cibb-xfactorfos
+```
+3- Enjoy (Go to Try yourself section to see how to use it)
+
 ## Previous configuration
 Before anything you must configure the script. For that, open your local copy of  [config.lua](config.lua) file and change the judges identifiers.
 
@@ -23,7 +34,7 @@ If 3 red X are pressed, then, a red lights animation will be triggered.
 
 If the golde button is pressed, a yellow (Golden style) light animation will be triggered.
 
-## Try yourself
+## Contact
 Questions? Recomendations? Bugs? Contact me on Discord: Cibb#2487
 
 ## Pending stuffs

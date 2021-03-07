@@ -42,6 +42,7 @@ end)
 
 function RestartFOS()
     shouldLightsRun = false
+    showGoldenX = false
 end
 
 -- Just one X Pressed

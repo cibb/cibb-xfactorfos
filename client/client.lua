@@ -1,6 +1,7 @@
 -- Internal vars, please don't touch!
 local shouldLightsRun = false
 local showGoldenX = false
+local throwConfetti = false
 local reason = ""
 local xPressed = {}
 
@@ -75,6 +76,7 @@ function GoldenBuzzer()
 
     Wait(7500) -- Previous music
     reason = "gold"
+    throwConfetti = true
     showGoldenX = true
     shouldLightsRun = true
     Wait(25000) -- Wait until music ends    
@@ -84,6 +86,47 @@ end
 -- -------------------------------------------------------------
 -- |                   DEAMOND ITERATORS                       |
 -- -------------------------------------------------------------
+
+
+Citizen.CreateThread(function()
+    RequestNamedPtfxAsset("scr_xs_celebration")
+    while not HasNamedPtfxAssetLoaded("scr_xs_celebration") do
+        Citizen.Wait(0)
+    end
+
+    while true do
+        if throwConfetti then
+            local a = 0
+            while a < 17 do                
+                Citizen.CreateThread(function()
+                    UseParticleFxAssetNextCall("scr_xs_celebration")                
+                    StartParticleFxNonLoopedAtCoord("scr_xs_confetti_burst", -232.5, -2001.29, 23.8, 0.0, 0.0, 0.0, 1.0, false, false, false)
+                end)
+
+                Citizen.CreateThread(function()
+                    UseParticleFxAssetNextCall("scr_xs_celebration")                
+                    StartParticleFxNonLoopedAtCoord("scr_xs_confetti_burst", -237.43, -1999.81, 23.8, 0.0, 0.0, 0.0, 1.0, false, false, false)
+                end)
+
+                Citizen.CreateThread(function()
+                    UseParticleFxAssetNextCall("scr_xs_celebration")                
+                    StartParticleFxNonLoopedAtCoord("scr_xs_confetti_burst", -232.83, -2003.81, 23.8, 0.0, 0.0, 0.0, 1.0, false, false, false)
+                end)
+
+                Citizen.CreateThread(function()
+                    UseParticleFxAssetNextCall("scr_xs_celebration")                
+                    StartParticleFxNonLoopedAtCoord("scr_xs_confetti_burst", -238.15, -2002.61, 23.8, 0.0, 0.0, 0.0, 1.0, false, false, false)
+                end)
+                
+
+                a = a + 1                
+                Citizen.Wait(1500)
+            end
+            throwConfetti = false
+        end
+        Citizen.Wait(0)
+    end
+end)
 
 -- Check if environment lights should be on
 Citizen.CreateThread(function()    
@@ -115,8 +158,7 @@ Citizen.CreateThread(function()
                 end
 
                 DrawText3D(targetPedCords, "X", r,g,b, 1)
-            end
-        end
+            end        end
         Citizen.Wait(0)
     end
 end)

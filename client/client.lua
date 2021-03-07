@@ -87,7 +87,7 @@ end
 -- |                   DEAMOND ITERATORS                       |
 -- -------------------------------------------------------------
 
-
+-- Throw confetti when is required
 Citizen.CreateThread(function()
     RequestNamedPtfxAsset("scr_xs_celebration")
     while not HasNamedPtfxAssetLoaded("scr_xs_celebration") do
@@ -97,28 +97,13 @@ Citizen.CreateThread(function()
     while true do
         if throwConfetti then
             local a = 0
-            while a < 17 do                
-                Citizen.CreateThread(function()
-                    UseParticleFxAssetNextCall("scr_xs_celebration")                
-                    StartParticleFxNonLoopedAtCoord("scr_xs_confetti_burst", -232.5, -2001.29, 23.8, 0.0, 0.0, 0.0, 1.0, false, false, false)
-                end)
-
-                Citizen.CreateThread(function()
-                    UseParticleFxAssetNextCall("scr_xs_celebration")                
-                    StartParticleFxNonLoopedAtCoord("scr_xs_confetti_burst", -237.43, -1999.81, 23.8, 0.0, 0.0, 0.0, 1.0, false, false, false)
-                end)
-
-                Citizen.CreateThread(function()
-                    UseParticleFxAssetNextCall("scr_xs_celebration")                
-                    StartParticleFxNonLoopedAtCoord("scr_xs_confetti_burst", -232.83, -2003.81, 23.8, 0.0, 0.0, 0.0, 1.0, false, false, false)
-                end)
-
-                Citizen.CreateThread(function()
-                    UseParticleFxAssetNextCall("scr_xs_celebration")                
-                    StartParticleFxNonLoopedAtCoord("scr_xs_confetti_burst", -238.15, -2002.61, 23.8, 0.0, 0.0, 0.0, 1.0, false, false, false)
-                end)
-                
-
+            while a < 17 do        
+                for _, item in ipairs(Config.confettiPosittions) do
+                    Citizen.CreateThread(function()
+                        UseParticleFxAssetNextCall("scr_xs_celebration")                
+                        StartParticleFxNonLoopedAtCoord("scr_xs_confetti_burst", item.x, item.y, item.z, 0.0, 0.0, 0.0, 1.0, false, false, false)
+                    end)
+                end
                 a = a + 1                
                 Citizen.Wait(1500)
             end
@@ -133,9 +118,10 @@ Citizen.CreateThread(function()
     while true do
         if shouldLightsRun then     
             local lightsOptions = Config.buzzers[reason]
-            DrawLightWithRange(-230.0,-2001.00,25.00,lightsOptions.r,lightsOptions.g,lightsOptions.b,10.0,lightsOptions.intensity)
-            DrawLightWithRange(-235.0,-2001.00,25.00,lightsOptions.r,lightsOptions.g,lightsOptions.b,7.0,lightsOptions.intensity)
-            DrawLightWithRange(-235.0,-2005.45,25.00,lightsOptions.r,lightsOptions.g,lightsOptions.b,9.0,lightsOptions.intensity)            
+
+            for _, item in ipairs(Config.lightsPositions) do
+                DrawLightWithRange(item.x,item.y,item.z,lightsOptions.r,lightsOptions.g,lightsOptions.b,10.0,lightsOptions.intensity)
+            end            
         end
         Wait(0)
     end

@@ -26,6 +26,11 @@ If the golde button is pressed, a yellow (Golden style) light animation will be 
 ## Try yourself
 Questions? Recomendations? Bugs? Contact me on Discord: Cibb#2487
 
+## Pending stuffs
+- The ininite loop to write the X in the judge's head is not really nice. Any way to improve that?
+- I guess that there is a check to avoid play sounds to users that are faraway, but we need test that with other players
+- What happen if I'm late to the party and one or more judges has the X?
+
 ## Legal
 
 ### License

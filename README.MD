@@ -3,6 +3,29 @@ This script adds the XFactor TV Show dynamics to Fame Or Shame stage in FiveM.
 
 Made for an user driven event in [MapachesRP](https://mapachesrp.com/) FiveM server
 
+## Previous configuration
+Before anything you must configure the script. For that, open your local copy of  [config.lua](config.lua) file and change the judges identifiers.
+
+In order to make it really flexible, you may choose between any idedntifier type (fivem, steam, license, etc). 
+
+Add each judges identifier in `Config.judges` and be sure that `Config.identifier_used` is configured with your desired identifier provider.
+
+## Try yourself
+After make those changes, you are ready to test!
+
+Go to Fame Or Shame stage (-235, -2001, 25) and walk to the judges table. If you are near enought you will see the call to action to open the Judges menu. If you are not able to see that, please be sure that the licences are well configured.
+
+With the ACTION KEY (Generally E), you will open the judges menu. There you may select press the red X, press the golden button or reset.
+
+Each judge will receive a X in the head to inform other judges and participants that they have pressed this button.
+
+If 3 red X are pressed, then, a red lights animation will be triggered.
+
+If the golde button is pressed, a yellow (Golden style) light animation will be triggered.
+
+## Try yourself
+Questions? Recomendations? Bugs? Contact me on Discord: Cibb#2487
+
 ## Legal
 
 ### License

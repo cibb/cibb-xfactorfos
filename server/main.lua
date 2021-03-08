@@ -51,11 +51,7 @@ end
 
 -- Send Visual Event
 function SendFOSVisualEvent(event, judgeId)
-    if GetConvar("onesync_enableInfinity", "false") == "true" then
-        TriggerClientEvent(event, -1, GetEntityCoords(GetPlayerPed(judgeId)), Config.propagation_distance)
-    else
-        TriggerClientEvent(event, -1, judgeId, Config.propagation_distance)
-    end
+    TriggerClientEvent(event, -1, judgeId, Config.propagation_distance)
 end
 
 -- -------------------------------------------------------------

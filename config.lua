@@ -35,9 +35,9 @@ Config.buzzers = {
     },
     gold = {
         r=153,
-        g=117,
-        b=0,
-        intensity = 30.00
+        g=51,
+        b=0,        
+        intensity = 50.00
     },
 }
 

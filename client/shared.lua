@@ -22,3 +22,9 @@ function DrawText3D(position, text, r,g,b, scaleModifcator)
         DrawText(_x,_y)
     end
 end
+
+function CalcSourceDist(sourceId)
+    local lCoords = GetEntityCoords(GetPlayerPed(-1))
+    local eCoords = GetEntityCoords(GetPlayerPed(GetPlayerFromServerId(sourceId)))
+    return Vdist(lCoords.x, lCoords.y, lCoords.z, eCoords.x, eCoords.y, eCoords.z)    
+end

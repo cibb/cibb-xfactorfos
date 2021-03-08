@@ -2,6 +2,7 @@
 local shouldLightsRun = false
 local showGoldenX = false
 local throwConfetti = false
+local goldeIsRunning = false
 local reason = ""
 local xPressed = {}
 
@@ -14,20 +15,29 @@ AddEventHandler('cibb-xfactorfos:xUpdate', function(serverXPressed)
 end)
 
 RegisterNetEvent('cibb-xfactorfos:xPressed')
-AddEventHandler('cibb-xfactorfos:xPressed', function(judgeId, button)   
+AddEventHandler('cibb-xfactorfos:xPressed', function(judgeId, maxDistance)   
     local xCount = 0
-    for _ in pairs(xPressed) do xCount = xCount + 1 end
-
-    if xCount == 3 then
-        AllXBuzzer()
-    else
-        XBuzzer(judgeId)
+    for _,value in pairs(xPressed) do
+        if value == "x" then
+            xCount = xCount + 1
+        end
     end
+
+    if(CalcSourceDist(judgeId) <= maxDistance and not goldeIsRunning) then
+        if xCount == 3 then
+            AllXBuzzer()
+        else
+            XBuzzer(judgeId)
+        end
+    end
+
 end)
 
 RegisterNetEvent('cibb-xfactorfos:goldPressed')
-AddEventHandler('cibb-xfactorfos:goldPressed', function(judgeId, button)
-    GoldenBuzzer()
+AddEventHandler('cibb-xfactorfos:goldPressed', function(judgeId, maxDistance)
+    if(CalcSourceDist(judgeId) <= maxDistance) then
+        GoldenBuzzer()
+    end
 end)
 
 RegisterNetEvent('cibb-xfactorfos:reset')
@@ -43,6 +53,12 @@ end)
 function RestartFOS()
     shouldLightsRun = false
     showGoldenX = false
+    throwConfetti = false
+    goldeIsRunning = false
+
+    SendNUIMessage({
+        transactionType     = 'cibb-xfactorfos-sound-stop'
+    })
 end
 
 -- Just one X Pressed
@@ -68,7 +84,8 @@ function AllXBuzzer()
 end
 
 -- Golden Buzzers pressed
-function GoldenBuzzer() 
+function GoldenBuzzer()
+    goldeIsRunning = true
     SendNUIMessage({
         transactionType     = 'cibb-xfactorfos-sound',
         transactionFile     = "gold",
@@ -98,7 +115,7 @@ Citizen.CreateThread(function()
     while true do
         if throwConfetti then
             local a = 0
-            while a < 17 do        
+            while a < 17 and throwConfetti do        
                 for _, item in ipairs(Config.confettiPosittions) do
                     Citizen.CreateThread(function()
                         UseParticleFxAssetNextCall("scr_xs_celebration")                
@@ -135,17 +152,20 @@ Citizen.CreateThread(function()
 
     while true do
         for _, id in ipairs(GetActivePlayers()) do
-            local xValue = xPressed[GetPlayerServerId(id)]
-            if xValue ~= nil and (xValue ~= "gold" or showGoldenX) then
-                local targetPedCords = GetEntityCoords(GetPlayerPed(id))                
-                if xValue == "x" then
-                    r,g,b = 255,0,0
-                else
-                    r,g,b = 255,215,0
-                end
+            if(CalcSourceDist(GetPlayerServerId(id)) <= Config.propagation_distance) then 
+                local xValue = xPressed[GetPlayerServerId(id)]
+                if xValue ~= nil and (xValue ~= "gold" or showGoldenX) then
+                    local targetPedCords = GetEntityCoords(GetPlayerPed(id))                
+                    if xValue == "x" then
+                        r,g,b = 255,0,0
+                    else
+                        r,g,b = 255,215,0
+                    end
 
-                DrawText3D(targetPedCords, "X", r,g,b, 1)
-            end        end
+                    DrawText3D(targetPedCords, "X", r,g,b, 1)
+                end        
+            end
+        end
         Citizen.Wait(0)
     end
 end)

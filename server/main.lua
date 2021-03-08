@@ -51,7 +51,7 @@ end
 
 -- Send Visual Event
 function SendFOSVisualEvent(event, judgeId)
-    TriggerClientEvent(event, -1, judgeId, Config.propagation_distance)
+    TriggerClientEvent(event, -1, judgeId)
 end
 
 -- -------------------------------------------------------------

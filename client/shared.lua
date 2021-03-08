@@ -23,8 +23,22 @@ function DrawText3D(position, text, r,g,b, scaleModifcator)
     end
 end
 
+-- Get coords and calculate the distance
 function CalcSourceDist(sourceId)
     local lCoords = GetEntityCoords(GetPlayerPed(-1))
     local eCoords = GetEntityCoords(GetPlayerPed(GetPlayerFromServerId(sourceId)))
     return Vdist(lCoords.x, lCoords.y, lCoords.z, eCoords.x, eCoords.y, eCoords.z)    
+end
+
+-- Fire sound event
+function FireSoundEvent(source, event,file)
+    if(CalcSourceDist(source) <= Config.propagation_distance) then
+        GoldenBuzzer()
+    end
+
+    SendNUIMessage({
+        transactionType     = event,
+        transactionFile     = file,
+        transactionVolume   = Config.sound.volume
+    })
 end

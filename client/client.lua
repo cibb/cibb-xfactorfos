@@ -15,7 +15,7 @@ AddEventHandler('cibb-xfactorfos:xUpdate', function(serverXPressed)
 end)
 
 RegisterNetEvent('cibb-xfactorfos:xPressed')
-AddEventHandler('cibb-xfactorfos:xPressed', function(judgeId, maxDistance)   
+AddEventHandler('cibb-xfactorfos:xPressed', function(judgeId)
     local xCount = 0
     for _,value in pairs(xPressed) do
         if value == "x" then
@@ -23,25 +23,36 @@ AddEventHandler('cibb-xfactorfos:xPressed', function(judgeId, maxDistance)
         end
     end
 
-    if(CalcSourceDist(judgeId) <= maxDistance and not goldeIsRunning) then
-        if xCount == 3 then
-            AllXBuzzer()
-        else
-            XBuzzer(judgeId)
-        end
+    if goldeIsRunning then
+        return
     end
 
+    if xCount == 3 then
+        reason = "fail"
+        shouldLightsRun = true
+        FireSoundEvent(judgeId, "cibb-xfactorfos-sound","x_final")
+        Wait(7500)
+        RestartFOS()
+    else
+        FireSoundEvent(judgeId, "cibb-xfactorfos-sound","x")
+    end
 end)
 
 RegisterNetEvent('cibb-xfactorfos:goldPressed')
-AddEventHandler('cibb-xfactorfos:goldPressed', function(judgeId, maxDistance)
-    if(CalcSourceDist(judgeId) <= maxDistance) then
-        GoldenBuzzer()
-    end
+AddEventHandler('cibb-xfactorfos:goldPressed', function(judgeId)
+    goldeIsRunning = true
+    FireSoundEvent(judgeId, "cibb-xfactorfos-sound","gold")
+    Wait(7500) -- Previous music
+    reason = "gold"
+    throwConfetti = true
+    showGoldenX = true
+    shouldLightsRun = true
+    Wait(25000) -- Wait until music ends    
+    RestartFOS()
 end)
 
 RegisterNetEvent('cibb-xfactorfos:reset')
-AddEventHandler('cibb-xfactorfos:reset', function(judgeId, button)
+AddEventHandler('cibb-xfactorfos:reset', function(judgeId)
     RestartFOS()
 end)
 
@@ -60,47 +71,6 @@ function RestartFOS()
         transactionType     = 'cibb-xfactorfos-sound-stop'
     })
 end
-
--- Just one X Pressed
-function XBuzzer(judgeId)
-    SendNUIMessage({
-        transactionType     = 'cibb-xfactorfos-sound',
-        transactionFile     = "x",
-        transactionVolume   = Config.sound.volume
-    })    
-end
-
--- All X Pressed! You are out!
-function AllXBuzzer()
-    reason = "fail"
-    shouldLightsRun = true
-    SendNUIMessage({
-        transactionType     = 'cibb-xfactorfos-sound',
-        transactionFile     = "x_final",
-        transactionVolume   = Config.sound.volume
-    })    
-    Wait(7500)
-    RestartFOS()
-end
-
--- Golden Buzzers pressed
-function GoldenBuzzer()
-    goldeIsRunning = true
-    SendNUIMessage({
-        transactionType     = 'cibb-xfactorfos-sound',
-        transactionFile     = "gold",
-        transactionVolume   = Config.sound.volume
-    })
-
-    Wait(7500) -- Previous music
-    reason = "gold"
-    throwConfetti = true
-    showGoldenX = true
-    shouldLightsRun = true
-    Wait(25000) -- Wait until music ends    
-    RestartFOS()
-end
-
 -- -------------------------------------------------------------
 -- |                   DEAMOND ITERATORS                       |
 -- -------------------------------------------------------------
@@ -139,7 +109,7 @@ Citizen.CreateThread(function()
 
             for _, item in ipairs(Config.lightsPositions) do
                 DrawLightWithRange(item.x,item.y,item.z,lightsOptions.r,lightsOptions.g,lightsOptions.b,10.0,lightsOptions.intensity)
-            end            
+            end
         end
         Wait(0)
     end
@@ -163,7 +133,7 @@ Citizen.CreateThread(function()
                     end
 
                     DrawText3D(targetPedCords, "X", r,g,b, 1)
-                end        
+                end
             end
         end
         Citizen.Wait(0)

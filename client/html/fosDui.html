@@ -1,0 +1,90 @@
+<html>
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+      body{
+        background-color: black;        
+        text-transform: uppercase;        
+      }
+
+      .judges {
+        padding: 0 1rem;        
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .pressed {
+        background-color: #e43535;
+        background-image: radial-gradient(#e43535, #6d0909);
+        background-size: 100%;        
+        -webkit-text-stroke-color: darkred !important;
+      }
+
+      .golden {        
+        background-color: #fee9a5;        
+        background-image: radial-gradient( #fee9a5, #ffa76e);
+        background-size: 100%;    
+        -webkit-text-stroke-color: #42241f !important;
+      }
+
+      .cross {
+        font-size: 10rem;
+        font-family: 'Dela Gothic One', cursive;        
+        background-color: white;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+        -moz-text-fill-color: transparent;    
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: #2ebfc2;
+      }
+
+      .name {
+        font-family: 'Merriweather Sans', sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        background-color: white;
+        border-radius: 16px;
+        padding: 10px;
+        color: black;      
+      }
+
+      .cross {
+        text-align: center;
+      }
+
+  </style>
+</head>
+<body>
+  <div class="judges">
+    <div class="judge">
+        <div class="cross pressed">
+          <span>X</span>
+        </div>
+        <div class="name pressed">
+          <span>Judge 1</span>
+        </div>
+      </div>
+      <div class="judge">
+        <div class="cross pressed">
+          <span>X</span>
+        </div>
+        <div class="name pressed">
+          <span>Judge 2</span>
+        </div>
+    </div>
+    <div class="judge">
+      <div class="cross pressed">
+        <span>X</span>
+      </div>
+      <div class="name pressed">
+        <span>Judge 3</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

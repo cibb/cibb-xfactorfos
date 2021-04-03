@@ -20,20 +20,25 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 	end
 
+    local waitTime = 1000
+
     while true do        
         if isJudge then
-            local object, distance = getDesk()
-
-            if distance and distance < 2.5 then
+            local inRange = GetInteriorFromEntity(GetPlayerPed(-1)) == Config.screen.interiorId and GetKeyForEntityInRoom(GetPlayerPed(-1)) == Config.screen.roomId
+            
+            if inRange then
+                waitTime = 0
                 if not isMenuOpen then
-                    DrawText3D(GetEntityCoords(object), Locales[Config.Locale]["press_e_to_open_menu"] , 255, 255, 255, 0.25)
+                    DrawText3D(vector3(Config.screen.coords.x,Config.screen.coords.y,Config.screen.coords.z), Locales[Config.Locale]["press_e_to_open_menu"] , 255, 255, 255, 0.25)
                     if IsControlJustReleased(0, 38) then
                         openJudgeMenu()
                     end
                 end
+            else
+                waitTime = 1000
             end
         end
-        Wait(0)
+        Wait(waitTime)
     end
 end)
 
@@ -60,17 +65,4 @@ function openJudgeMenu()
         isMenuOpen = false
 		menu.close()
 	end)
-end
-
-function getDesk()
-    local object, distance
-	local coords = GetEntityCoords(GetPlayerPed(-1))
-
-    object = GetClosestObjectOfType(coords, 3.0, GetHashKey("v_62_ecolacup003"), false, false, false)
-    distance = #(coords - GetEntityCoords(object))
-    if distance < 5 then
-        return object, distance
-    end
-
-	return nil, nil
 end

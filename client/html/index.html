@@ -8,7 +8,7 @@
             var audioPlayer = null;
 
             window.addEventListener('message', function(event) {
-                if (event.data.transactionType == "cibb-xfactorfos-sound-stop") {
+                if (event.data.transactionType == "cibb-xfactorfos-sound-stop" && audioPlayer != null) {
                   audioPlayer.stop();
                   return;
                 }

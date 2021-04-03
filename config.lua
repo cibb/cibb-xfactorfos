@@ -6,15 +6,15 @@ Config.Locale = 'es'
 -- Judges identifiers (Steam, License, or any other requirement)
 Config.judges = {
     [1] = {
-        identifier = "license:asdjf", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
-        name = "Juancito"
-    },
-    [2] = {
-        identifier = "license:asdfh", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
+        identifier = "license:5d46aba8f69a688bfb8a5889f1df3c020f66c578", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
         name = "Armando"
     },
+    [2] = {
+        identifier = "license:5d46aba8f69a688bfb8a5889f1df3c020f66c570", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
+        name = "Juancito"
+    },
     [3] = {
-        identifier = "license:asdfg", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
+        identifier = "license:5d46aba8f69a688bfb8a5889f1df3c020f66c579", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
         name = "Ofelia"
     }    
 }

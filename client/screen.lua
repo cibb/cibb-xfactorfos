@@ -8,7 +8,7 @@ local screenModel = GetHashKey(Config.screen.model)
 local handle = CreateNamedRenderTargetForModel(Config.screen.renderTarget, screenModel)
 
 local txd = CreateRuntimeTxd('video')
-local duiObj = CreateDui("nui://cibb-xfactorfos/client/html/screen.html", screenWidth, screenHeight)
+duiObj = CreateDui("nui://cibb-xfactorfos/client/html/screen.html", screenWidth, screenHeight)
 local dui = GetDuiHandle(duiObj)
 local tx = CreateRuntimeTextureFromDuiHandle(txd, 'test', dui)
 
@@ -24,9 +24,9 @@ CreateThread(function ()
 		SetEntityHeading(screenEntity, Config.screen.coords.heading)
 	 	SetEntityCoords(screenEntity, GetEntityCoords(screenEntity))
 		SetModelAsNoLongerNeeded(screenModel)
-		
-		Wait(1000) -- Give some time to create the object
-		print("Sending")
+				
+		Wait(1000)
+
 		SendDuiMessage(duiObj, json.encode({
 			type = "startup",
 			judges = Config.judges

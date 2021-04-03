@@ -31,18 +31,21 @@ AddEventHandler('cibb-xfactorfos:AmIAJudge', function(source)
 end)
 
 -- Update cache and broadcast to all the users
-function UpdatePressedCache(judgeId,button)    
+function UpdatePressedCache(judgeId,button)
     if button == "reset" then
         xPressed = nil
         xPressed = {}
     end
 
-    if xPressed[judgeId] ~= nil and xPressed[judgeId] == button then
+    if xPressed[judgeId] ~= nil and xPressed[judgeId].button == button then
         xPressed[judgeId] = nil
         TriggerClientEvent("cibb-xfactorfos:xUpdate", -1, xPressed)
         return false
     elseif button == "x" or button == "gold" then
-        xPressed[judgeId] = button
+        xPressed[judgeId] = {
+            button = button,
+            internalIdentifier = GetInternalJudgeIdentifier(judgeId)
+        }
     end
 
     TriggerClientEvent("cibb-xfactorfos:xUpdate", -1, xPressed)
@@ -64,6 +67,16 @@ function GetConfiguredIdentifier(source)
     for k,value in pairs(GetPlayerIdentifiers(source)) do
         if string.sub(value, 1, string.len(Config.identifier_used .. ":")) == Config.identifier_used .. ":" then
             return value
+        end
+    end
+end
+
+-- Get judge internal identifier
+function GetInternalJudgeIdentifier(source)
+    local judgeIdentifier = GetConfiguredIdentifier(source)
+    for k,value in pairs(Config.judges) do
+        if value.identifier == judgeIdentifier then
+            return k
         end
     end
 end

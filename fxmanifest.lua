@@ -8,9 +8,11 @@ description 'XFactor Fame Or Shame for FiveM.'
 client_script {
     'config.lua',
     'locales/es.lua',
+    'client/utils.lua',
     'client/shared.lua',
     'client/menu.lua',
-    'client/client.lua'
+    'client/client.lua',
+    'client/screen.lua'
 }
 
 server_script {
@@ -22,6 +24,8 @@ server_script {
 ui_page "client/html/index.html"
 
 files {
+    'client/html/screen.js',
+    'client/html/screen.html',
     'client/html/index.html',
     'client/html/sounds/x.mp3',
     'client/html/sounds/x_final.mp3',

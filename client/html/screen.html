@@ -10,11 +10,14 @@
         text-transform: uppercase;        
       }
 
-      .judges {
+      .judges {        
         padding: 0 1rem;        
-        height: 100%;
         display: flex;
         justify-content: space-between;
+      }
+
+      .judge{
+        max-width: 30%;
       }
 
       .pressed {
@@ -32,7 +35,7 @@
       }
 
       .cross {
-        font-size: 10rem;
+        font-size: 13rem;
         font-family: 'Dela Gothic One', cursive;        
         background-color: white;
         -webkit-background-clip: text;
@@ -44,7 +47,7 @@
       }
 
       .name {
-        font-family: 'Merriweather Sans', sans-serif;
+        font-family: 'Merriweather Sans', sans-serif;        
         font-size: 3rem;
         font-weight: 700;
         background-color: white;
@@ -58,33 +61,11 @@
       }
 
   </style>
+  <script src="nui://game/ui/jquery.js" type="text/javascript"></script>  
+  <script src="screen.js" type="text/javascript"></script>  
 </head>
 <body>
-  <div class="judges">
-    <div class="judge">
-        <div class="cross pressed">
-          <span>X</span>
-        </div>
-        <div class="name pressed">
-          <span>Judge 1</span>
-        </div>
-      </div>
-      <div class="judge">
-        <div class="cross pressed">
-          <span>X</span>
-        </div>
-        <div class="name pressed">
-          <span>Judge 2</span>
-        </div>
-    </div>
-    <div class="judge">
-      <div class="cross pressed">
-        <span>X</span>
-      </div>
-      <div class="name pressed">
-        <span>Judge 3</span>
-      </div>
-    </div>
+  <div class="judges">   
   </div>
 </body>
 </html>

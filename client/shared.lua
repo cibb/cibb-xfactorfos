@@ -33,12 +33,10 @@ end
 -- Fire sound event
 function FireSoundEvent(source, event,file)
     if(CalcSourceDist(source) <= Config.propagation_distance) then
-        GoldenBuzzer()
+        SendNUIMessage({
+            transactionType     = event,
+            transactionFile     = file,
+            transactionVolume   = Config.sound.volume
+        })
     end
-
-    SendNUIMessage({
-        transactionType     = event,
-        transactionFile     = file,
-        transactionVolume   = Config.sound.volume
-    })
 end

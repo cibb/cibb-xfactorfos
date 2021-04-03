@@ -5,9 +5,18 @@ Config.Locale = 'es'
 
 -- Judges identifiers (Steam, License, or any other requirement)
 Config.judges = {
-    "", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
-    "",
-    ""
+    [1] = {
+        identifier = "license:asdjf", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
+        name = "Juancito"
+    },
+    [2] = {
+        identifier = "license:asdfh", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
+        name = "Armando"
+    },
+    [3] = {
+        identifier = "license:asdfg", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
+        name = "Ofelia"
+    }    
 }
 
 -- Internal configuration
@@ -17,7 +26,7 @@ Config.judges = {
 
 -- You may replace it for your desired license type (steamid, license, discord, etc).
 -- Make sure that you are using the same in judges list config.
-Config.identifier_used = "steamid"
+Config.identifier_used = "license"
 
 Config.propagation_distance = 10
 
@@ -82,6 +91,20 @@ Config.confettiPosittions = {
         y= -2002.61,
         z=  23.8
     },
+}
+
+Config.screen = {
+   model = "prop_flatscreen_overlay",
+   renderTarget = "tvscreen",
+   coords = {
+    x=  -234.6,
+    y= -1998.79,
+    z=  23.8,
+    heading = 346.5
+   },
+   interiorId = 78338,
+   roomId = -266971274
+
 }
 
 Locales = {}

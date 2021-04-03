@@ -73,7 +73,7 @@ function CheckPlayerCanInteract(Player)
     local identifier = GetConfiguredIdentifier(Player)
 
     for key,configuredIdentifier in pairs(Config.judges) do
-        if configuredIdentifier == identifier then
+        if configuredIdentifier.identifier == identifier then
             return true
         end
     end

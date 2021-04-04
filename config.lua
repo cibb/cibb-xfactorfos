@@ -6,27 +6,27 @@ Config.Locale = 'es'
 -- Judges identifiers (Steam, License, or any other requirement)
 Config.judges = {
     [1] = {
-        identifier = "license:5d46aba8f69a688bfb8a5889f1df3c020f66c578", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
-        name = "Armando"
+        identifier = "license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
+        name = "Judge 1"  -- Display name in the screen
     },
     [2] = {
-        identifier = "license:5d46aba8f69a688bfb8a5889f1df3c020f66c570", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
-        name = "Juancito"
+        identifier = "license:5d46asdasd8bfb8a5889f1df3c020fasdasdasqqq", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasqqq
+        name = "Judge 2"  -- Display name in the screen
     },
     [3] = {
-        identifier = "license:5d46aba8f69a688bfb8a5889f1df3c020f66c579", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
-        name = "Ofelia"
+        identifier = "license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdddf", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdddf
+        name = "Judge 3"  -- Display name in the screen
     }    
 }
+
+-- You may replace it for your desired license type (steamid, license, discord, etc).
+-- Make sure that you are using the same in judges list config.
+Config.identifier_used = "license"
 
 -- Internal configuration
 -- -----------------------------------------------------------------------------
 -- |    Don't touch anything if you are not sure about what are you doing      |
 -- -----------------------------------------------------------------------------
-
--- You may replace it for your desired license type (steamid, license, discord, etc).
--- Make sure that you are using the same in judges list config.
-Config.identifier_used = "license"
 
 Config.propagation_distance = 10
 

@@ -56,6 +56,7 @@ Questions? Recomendations? Bugs? Contact me on Discord: Cibb#2487
 
 ## Thanks
 - [plunkettscott/interact-sound](https://github.com/plunkettscott/interact-sound) for the Howler tip to play custom sounds 
+- [FiveM thers](https://forum.cfx.re/t/release-generic-dui-2d-3d-renderer/131208) for the custom 3D renderer used in the screen
 
 ## Legal
 

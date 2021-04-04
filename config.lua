@@ -94,17 +94,18 @@ Config.confettiPosittions = {
 }
 
 Config.screen = {
-   model = "prop_flatscreen_overlay",
-   renderTarget = "tvscreen",
-   coords = {
-    x=  -234.6,
-    y= -1998.79,
-    z=  23.8,
-    heading = 346.5
+   sfName = "fos_screen_x",
+   width = 1880,
+   height = 420,
+   scale = 0.1,
+   coords = {    
+        x=  -236.3,
+        y= -1998.45,
+        z=  24.5,
+        yRotation = 13.0
    },
    interiorId = 78338,
    roomId = -266971274
-
 }
 
 Locales = {}

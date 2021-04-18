@@ -22,16 +22,18 @@ end, true)
 1. Download the last release
 2. Add this to your server.cfg:
 ```
+    ensure cibb-xfactorfos-screen
     ensure cibb-xfactorfos
 ```
-3. Enjoy (Go to Try yourself section to see how to use it)
+3. Move `cibb-xfactorfos` and `cibb-xfactorfos-screen` folders to your resources folder (You may move both to an `[fameorshame]` folder)
+4. Enjoy (Go to Try yourself section to see how to use it)
 
 ## Previous configuration
 Before anything you must configure the script. For that, open your local copy of  [config.lua](config.lua) file and change the judges identifiers.
 
 In order to make it really flexible, you may choose between any idedntifier type (fivem, steam, license, etc). 
 
-Add each judges identifier in `Config.judges` and be sure that `Config.identifier_used` is configured with your desired identifier provider.
+Add each judges identifier in `Config.judges` with thei in game name and be sure that `Config.identifier_used` is configured with your desired identifier provider.
 
 ## Try yourself
 After make those changes, you are ready to test!

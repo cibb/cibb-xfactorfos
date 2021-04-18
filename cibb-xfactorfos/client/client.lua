@@ -46,6 +46,10 @@ end)
 
 RegisterNetEvent('cibb-xfactorfos:goldPressed')
 AddEventHandler('cibb-xfactorfos:goldPressed', function(judgeId)
+    SendDuiMessage(duiObj, json.encode({
+        type = "xUpdate",
+        xPressed = {}
+    }))
     goldeIsRunning = true
     FireSoundEvent(judgeId, "cibb-xfactorfos-sound","gold")
     Wait(7500) -- Previous music

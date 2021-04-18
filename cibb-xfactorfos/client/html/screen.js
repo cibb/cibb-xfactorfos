@@ -4,8 +4,6 @@ $(function() {
       if(event.type !== "message"){
         return;
       }
-
-      console.log(JSON.stringify(event.data))
       
       if(event.data.type === "startup"){
         $("#loading").remove();

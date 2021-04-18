@@ -1,19 +1,17 @@
 local sfHandle
+local txd = CreateRuntimeTxd('cibbfos');        
+duiObj = CreateDui('nui://cibb-xfactorfos/client/html/screen.html', Config.screen.width, Config.screen.height);            
+local dui = GetDuiHandle(duiObj);        
+local tx = CreateRuntimeTextureFromDuiHandle(txd, 'x', dui);    
 
-local txd = CreateRuntimeTxd('cibbfos');
-duiObj = CreateDui('nui://cibb-xfactorfos/client/html/screen.html', Config.screen.width, Config.screen.height);
-local dui = GetDuiHandle(duiObj);
-CreateRuntimeTextureFromDuiHandle(txd, 'x', dui);
-
-CreateThread(function ()
-
+CreateThread(function ()        
     local playerPed = PlayerPedId()
-	local inRange = false
-
+    local inRange = false
+    
     if not HasScaleformMovieLoaded(sfHandle) then
         sfHandle = RequestScaleformMovie(Config.screen.sfName);
-        while not HasScaleformMovieLoaded(sfHandle) do            
-            Wait(10)
+        while not HasScaleformMovieLoaded(sfHandle) or not IsDuiAvailable(duiObj) or not txd do            
+            Wait(1000)
         end
 
         PushScaleformMovieFunction(sfHandle, 'SET_TEXTURE');
@@ -33,7 +31,7 @@ CreateThread(function ()
     end
 
     while true do        
-		inRange = GetInteriorFromEntity(playerPed) == Config.screen.interiorId and GetKeyForEntityInRoom(playerPed) == Config.screen.roomId
+        inRange = GetInteriorFromEntity(playerPed) == Config.screen.interiorId and GetKeyForEntityInRoom(playerPed) == Config.screen.roomId
 
         if inRange then	
             DrawScaleformMovie_3dNonAdditive(sfHandle,Config.screen.coords.x,Config.screen.coords.y,Config.screen.coords.z,
@@ -49,6 +47,5 @@ AddEventHandler('onResourceStop', function (resource)
 	if resource == GetCurrentResourceName() then
 		SetDuiUrl(duiObj, 'about:blank')
 		DestroyDui(duiObj)
-		SetScaleformMovieAsNoLongerNeeded()
 	end
 end)

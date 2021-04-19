@@ -5,19 +5,28 @@ Config.Locale = 'es'
 
 -- Judges identifiers (Steam, License, or any other requirement)
 Config.judges = {
-    "", -- For Example license:5d46asdasd8bfb8a5889f1df3c020fasdasdasdas
-    "",
-    ""
+    [1] = {
+        identifier = "license:AAAAAAAAAAAAAAAA", -- For Example license:AAAAAAAAAAAAAAAA
+        name = "Judge 1"  -- Display name in the screen
+    },
+    [2] = {
+        identifier = "license:BBBBBBBBBBBBBB", -- For Example license:BBBBBBBBBBBBBBBBB
+        name = "Judge 2"  -- Display name in the screen
+    },
+    [3] = {
+        identifier = "license:CCCCCCCCCCCCCCCCC", -- For Example license:CCCCCCCCCCCCCCCCC
+        name = "Judge 3"  -- Display name in the screen
+    }    
 }
+
+-- You may replace it for your desired license type (steamid, license, discord, etc).
+-- Make sure that you are using the same in judges list config.
+Config.identifier_used = "license"
 
 -- Internal configuration
 -- -----------------------------------------------------------------------------
 -- |    Don't touch anything if you are not sure about what are you doing      |
 -- -----------------------------------------------------------------------------
-
--- You may replace it for your desired license type (steamid, license, discord, etc).
--- Make sure that you are using the same in judges list config.
-Config.identifier_used = "steamid"
 
 Config.propagation_distance = 10
 
@@ -83,5 +92,35 @@ Config.confettiPosittions = {
         z=  23.8
     },
 }
+
+Config.tablePossition = {
+    x = -234.58,
+    y = -1999.07,
+    z = 24.69
+}
+
+Config.screen = {
+   sfName = "fos_screen_x",
+   width = 1880,
+   height = 420,
+   scale = 0.1,
+   coords = {    
+        x=  -236.3,
+        y= -1998.45,
+        z=  24.5,
+        yRotation = 13.0
+   },
+   interiorId = 78338,
+   roomId = -266971274
+}
+
+-- Fame Or Shame judges table
+Config.tablePossition = {
+    x = -234.58,
+    y = -1999.07,
+    z = 24.69
+}
+
+Config.tablePossition.vector = vector3(Config.tablePossition.x, Config.tablePossition.y, Config.tablePossition.z)
 
 Locales = {}

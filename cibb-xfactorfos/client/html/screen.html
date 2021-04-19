@@ -1,0 +1,76 @@
+<html>
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+      body{
+        background-color: black;        
+        text-transform: uppercase;        
+      }
+
+      .judges {        
+        padding: 0 1rem;        
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .judge{
+        max-width: 30%;
+      }
+
+      .pressed {
+        background-color: #e43535;
+        background-image: radial-gradient(#e43535, #6d0909);
+        background-size: 100%;        
+        -webkit-text-stroke-color: darkred !important;
+      }
+
+      .golden {        
+        background-color: #fee9a5;        
+        background-image: radial-gradient( #fee9a5, #ffa76e);
+        background-size: 100%;    
+        -webkit-text-stroke-color: #42241f !important;
+      }
+
+      .cross {
+        font-size: 13rem;
+        font-family: 'Dela Gothic One', cursive;        
+        background-color: white;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+        -moz-text-fill-color: transparent;    
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: #2ebfc2;
+      }
+
+      .name {
+        font-family: 'Merriweather Sans', sans-serif;        
+        font-size: 3rem;
+        font-weight: 700;
+        background-color: white;
+        border-radius: 16px;
+        padding: 10px;
+        color: black;      
+      }
+
+      .cross {
+        text-align: center;
+      }
+
+  </style>
+  <script src="nui://game/ui/jquery.js" type="text/javascript"></script>  
+  <script src="screen.js" type="text/javascript"></script>  
+</head>
+<body>
+  <div id="loading">
+    <center>
+      <img src="img/logo.png" alt="Logo" height="55%">
+    </center>
+  </div>
+  <div class="judges">   
+  </div>
+</body>
+</html>

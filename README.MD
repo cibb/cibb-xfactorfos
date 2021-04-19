@@ -3,6 +3,8 @@ This simple script adds the XFactor TV Show dynamics to Fame Or Shame stage in F
 
 Made for an user driven event in [MapachesRP](https://mapachesrp.com/) FiveM server
 
+Check how it works [Youtube video](https://youtu.be/mahjUgZuyfc)
+
 ## Requirement
 If you don't have experience coding, you will need ESX to use it OOTB. We use ESX ui namespace to create the judge menu.
 
@@ -22,16 +24,18 @@ end, true)
 1. Download the last release
 2. Add this to your server.cfg:
 ```
+    ensure cibb-xfactorfos-screen
     ensure cibb-xfactorfos
 ```
-3. Enjoy (Go to Try yourself section to see how to use it)
+3. Move `cibb-xfactorfos` and `cibb-xfactorfos-screen` folders to your resources folder (You may move both to an `[fameorshame]` folder)
+4. Enjoy (Go to Try yourself section to see how to use it)
 
 ## Previous configuration
 Before anything you must configure the script. For that, open your local copy of  [config.lua](config.lua) file and change the judges identifiers.
 
 In order to make it really flexible, you may choose between any idedntifier type (fivem, steam, license, etc). 
 
-Add each judges identifier in `Config.judges` and be sure that `Config.identifier_used` is configured with your desired identifier provider.
+Add each judges identifier in `Config.judges` with thei in game name and be sure that `Config.identifier_used` is configured with your desired identifier provider.
 
 ## Try yourself
 After make those changes, you are ready to test!
@@ -47,7 +51,7 @@ If 3 red X are pressed, then, a red lights animation will be triggered.
 If the golde button is pressed, a yellow (Golden style) light animation will be triggered.
 
 ## Contact
-Questions? Recomendations? Bugs? Contact me on Discord: Cibb#2487
+Questions? Recomendations? Bugs? Contact me on Discord: https://cibb.dev/discord
 
 ## Pending stuffs
 - The ininite loop to write the X in the judge's head is not really nice. Any way to improve that?
@@ -56,6 +60,7 @@ Questions? Recomendations? Bugs? Contact me on Discord: Cibb#2487
 
 ## Thanks
 - [plunkettscott/interact-sound](https://github.com/plunkettscott/interact-sound) for the Howler tip to play custom sounds 
+- [FiveM thers](https://forum.cfx.re/t/release-generic-dui-2d-3d-renderer/131208) for the custom 3D renderer used in the screen
 
 ## Legal
 

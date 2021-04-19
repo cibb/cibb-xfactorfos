@@ -2,6 +2,7 @@ local sfHandle
 local loaded = false
 duiObj = false
 
+-- Load functions
 function LoadFos()
     sfHandle = RequestScaleformMovie(Config.screen.sfName);
     duiObj = CreateDui('nui://cibb-xfactorfos/client/html/screen.html', Config.screen.width, Config.screen.height);
@@ -31,6 +32,7 @@ function LoadFos()
     loaded = true
 end
 
+-- Main thread for screen
 CreateThread(function ()
     local tablePossition = vector3(Config.tablePossition.x, Config.tablePossition.y, Config.tablePossition.z)
     local waitTime = 1000;

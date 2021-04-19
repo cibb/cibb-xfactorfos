@@ -1,6 +1,5 @@
 -- Internal vars, please don't touch!
 local shouldLightsRun = false
-local showGoldenX = false
 local throwConfetti = false
 local goldeIsRunning = false
 local reason = ""
@@ -14,8 +13,16 @@ AddEventHandler('cibb-xfactorfos:xUpdate', function(serverXPressed)
     xPressed = serverXPressed
 end)
 
+RegisterNetEvent('cibb-xfactorfos:xRemoved')
+AddEventHandler('cibb-xfactorfos:xRemoved', function()
+    SendDuiMessage(duiObj, json.encode({
+        type = "xUpdate",
+        xPressed = xPressed
+    }))
+end)
+
 RegisterNetEvent('cibb-xfactorfos:xPressed')
-AddEventHandler('cibb-xfactorfos:xPressed', function(judgeId)
+AddEventHandler('cibb-xfactorfos:xPressed', function()
     local xCount = 0
     for _,value in pairs(xPressed) do
         if value.button == "x" then
@@ -36,22 +43,22 @@ AddEventHandler('cibb-xfactorfos:xPressed', function(judgeId)
         reason = "fail"
         shouldLightsRun = true
         runLights()
-        FireSoundEvent(judgeId, "cibb-xfactorfos-sound","x_final")
+        FireSoundEvent("cibb-xfactorfos-sound","x_final")
         Wait(7500)
         RestartFOS()
     else
-        FireSoundEvent(judgeId, "cibb-xfactorfos-sound","x")
+        FireSoundEvent("cibb-xfactorfos-sound","x")
     end
 end)
 
 RegisterNetEvent('cibb-xfactorfos:goldPressed')
-AddEventHandler('cibb-xfactorfos:goldPressed', function(judgeId)
+AddEventHandler('cibb-xfactorfos:goldPressed', function()
     SendDuiMessage(duiObj, json.encode({
         type = "xUpdate",
         xPressed = {}
     }))
     goldeIsRunning = true
-    FireSoundEvent(judgeId, "cibb-xfactorfos-sound","gold")
+    FireSoundEvent("cibb-xfactorfos-sound","gold")
     Wait(7500) -- Previous music
     reason = "gold"
     throwConfetti = true    
@@ -69,7 +76,7 @@ AddEventHandler('cibb-xfactorfos:goldPressed', function(judgeId)
 end)
 
 RegisterNetEvent('cibb-xfactorfos:reset')
-AddEventHandler('cibb-xfactorfos:reset', function(judgeId)
+AddEventHandler('cibb-xfactorfos:reset', function()
     RestartFOS()
 end)
 
@@ -79,8 +86,7 @@ end)
 -- -------------------------------------------------------------
 
 function RestartFOS()
-    shouldLightsRun = false
-    showGoldenX = false
+    shouldLightsRun = false    
     throwConfetti = false
     goldeIsRunning = false
 

@@ -3,6 +3,8 @@ This simple script adds the XFactor TV Show dynamics to Fame Or Shame stage in F
 
 Made for an user driven event in [MapachesRP](https://mapachesrp.com/) FiveM server
 
+Check how it works [Youtube video](https://youtu.be/mahjUgZuyfc)
+
 ## Requirement
 If you don't have experience coding, you will need ESX to use it OOTB. We use ESX ui namespace to create the judge menu.
 
@@ -49,7 +51,7 @@ If 3 red X are pressed, then, a red lights animation will be triggered.
 If the golde button is pressed, a yellow (Golden style) light animation will be triggered.
 
 ## Contact
-Questions? Recomendations? Bugs? Contact me on Discord: Cibb#2487
+Questions? Recomendations? Bugs? Contact me on Discord: https://cibb.dev/discord
 
 ## Pending stuffs
 - The ininite loop to write the X in the judge's head is not really nice. Any way to improve that?

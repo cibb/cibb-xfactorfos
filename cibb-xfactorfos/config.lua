@@ -6,11 +6,11 @@ Config.Locale = 'es'
 -- Judges identifiers (Steam, License, or any other requirement)
 Config.judges = {
     [1] = {
-        identifier = "license:5d46aba8f69a688bfb8a5889f1df3c020f66c578", -- For Example license:AAAAAAAAAAAAAAAA
+        identifier = "license:AAAAAAAAAAAAAAAA", -- For Example license:AAAAAAAAAAAAAAAA
         name = "Judge 1"  -- Display name in the screen
     },
     [2] = {
-        identifier = "license:BBBBBBBBBBBBBBBBB", -- For Example license:BBBBBBBBBBBBBBBBB
+        identifier = "license:BBBBBBBBBBBBBB", -- For Example license:BBBBBBBBBBBBBBBBB
         name = "Judge 2"  -- Display name in the screen
     },
     [3] = {
@@ -113,5 +113,14 @@ Config.screen = {
    interiorId = 78338,
    roomId = -266971274
 }
+
+-- Fame Or Shame judges table
+Config.tablePossition = {
+    x = -234.58,
+    y = -1999.07,
+    z = 24.69
+}
+
+Config.tablePossition.vector = vector3(Config.tablePossition.x, Config.tablePossition.y, Config.tablePossition.z)
 
 Locales = {}

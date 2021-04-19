@@ -22,12 +22,13 @@ Citizen.CreateThread(function()
 
     local waitTime = 1000
     local showNotification = false;
+    local playerPed = PlayerPedId()
+    local tablePossition = vector3(Config.tablePossition.x, Config.tablePossition.y, Config.tablePossition.z)
+
 
     while true do           
         if isJudge then
-            local inRange = GetInteriorFromEntity(GetPlayerPed(-1)) == Config.screen.interiorId and GetKeyForEntityInRoom(GetPlayerPed(-1)) == Config.screen.roomId            
-
-            if inRange then
+            if #(GetEntityCoords(playerPed) - tablePossition) < 5 then
                 if showNotification then                    
                     BeginTextCommandThefeedPost("STRING")
                     AddTextComponentSubstringPlayerName(Locales[Config.Locale]["press_e_to_open_menu"])

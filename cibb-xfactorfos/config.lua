@@ -93,6 +93,12 @@ Config.confettiPosittions = {
     },
 }
 
+Config.tablePossition = {
+    x = -234.58,
+    y = -1999.07,
+    z = 24.69
+}
+
 Config.screen = {
    sfName = "fos_screen_x",
    width = 1880,

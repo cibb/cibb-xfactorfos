@@ -1,51 +1,74 @@
 local sfHandle
-local txd = CreateRuntimeTxd('cibbfos');        
-duiObj = CreateDui('nui://cibb-xfactorfos/client/html/screen.html', Config.screen.width, Config.screen.height);            
-local dui = GetDuiHandle(duiObj);        
-local tx = CreateRuntimeTextureFromDuiHandle(txd, 'x', dui);    
+local loaded = false
+duiObj = false
 
-CreateThread(function ()        
-    local playerPed = PlayerPedId()
-    local inRange = false
+function LoadFos()
+    print("Loading starterd internally")
     
-    if not HasScaleformMovieLoaded(sfHandle) then
-        sfHandle = RequestScaleformMovie(Config.screen.sfName);
-        while not HasScaleformMovieLoaded(sfHandle) or not IsDuiAvailable(duiObj) or not txd do            
-            Wait(1000)
-        end
+    duiObj = CreateDui('nui://cibb-xfactorfos/client/html/screen.html', Config.screen.width, Config.screen.height);
+    while not IsDuiAvailable(duiObj) do
+        Wait(0)
+    end
+    
+    local txd = CreateRuntimeTxd('cibbfos');
+    Wait(500)
+    local dui = GetDuiHandle(duiObj);        
+    Wait(500)
+    CreateRuntimeTextureFromDuiHandle(txd, 'equis', dui);
+    Wait(500)
 
-        PushScaleformMovieFunction(sfHandle, 'SET_TEXTURE');
-        PushScaleformMovieMethodParameterString('cibbfos'); 
-        PushScaleformMovieMethodParameterString('x'); 
-        PushScaleformMovieFunctionParameterInt(0);
-        PushScaleformMovieFunctionParameterInt(0);
-        PushScaleformMovieFunctionParameterInt(Config.screen.width);
-        PushScaleformMovieFunctionParameterInt(Config.screen.height);
-        PopScaleformMovieFunctionVoid();
-
-        Wait(500)
-        SendDuiMessage(duiObj, json.encode({
-            type = "startup",
-            judges = Config.judges
-        }))
+    sfHandle = RequestScaleformMovie(Config.screen.sfName);
+    while not HasScaleformMovieLoaded(sfHandle) or not txd do            
+        Wait(0)
     end
 
-    while true do        
-        inRange = GetInteriorFromEntity(playerPed) == Config.screen.interiorId and GetKeyForEntityInRoom(playerPed) == Config.screen.roomId
+    PushScaleformMovieFunction(sfHandle, 'SET_TEXTURE');
+    PushScaleformMovieMethodParameterString('cibbfos'); 
+    PushScaleformMovieMethodParameterString('equis'); 
+    PushScaleformMovieFunctionParameterInt(0);
+    PushScaleformMovieFunctionParameterInt(0);
+    PushScaleformMovieFunctionParameterInt(Config.screen.width);
+    PushScaleformMovieFunctionParameterInt(Config.screen.height);
+    PopScaleformMovieFunctionVoid();
 
-        if inRange then	
-            DrawScaleformMovie_3dNonAdditive(sfHandle,Config.screen.coords.x,Config.screen.coords.y,Config.screen.coords.z,
-            0, Config.screen.coords.yRotation, 0,
-            2, 2, 2,Config.screen.scale * 1, Config.screen.scale * (9/16), 1,2);
+    Wait(500)
+    SendDuiMessage(duiObj, json.encode({
+        type = "startup",
+        judges = Config.judges
+    }))
+
+    Wait(1000)
+    loaded = true
+    print("Loaded")
+end
+
+CreateThread(function ()
+    local tablePossition = vector3(Config.tablePossition.x, Config.tablePossition.y, Config.tablePossition.z)
+    local waitTime = 1000;
+    while true do
+        if #(GetEntityCoords(PlayerPedId()) - tablePossition) < 50 then
+            if loaded then                            
+                DrawScaleformMovie_3dNonAdditive(sfHandle,Config.screen.coords.x,Config.screen.coords.y,Config.screen.coords.z,
+                0, Config.screen.coords.yRotation, 0,
+                2, 2, 2,Config.screen.scale * 1, Config.screen.scale * (9/16), 1,2);
+            else
+                print("Loading")
+                LoadFos()
+            end
+            waitTime = 0
+        else
+            print("Not here")
+            waitTime = 1000
         end
-        Wait(0)
+
+        Wait(waitTime)
     end
 end)
 
 -- Cleanup
 AddEventHandler('onResourceStop', function (resource)
-	if resource == GetCurrentResourceName() then
-		SetDuiUrl(duiObj, 'about:blank')
+	if resource == GetCurrentResourceName() and duiObj then
+        SetDuiUrl(duiObj, 'about:blank')
 		DestroyDui(duiObj)
 	end
 end)

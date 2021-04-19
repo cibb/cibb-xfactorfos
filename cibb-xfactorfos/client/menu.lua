@@ -21,14 +21,13 @@ Citizen.CreateThread(function()
 	end
 
     local waitTime = 1000
-    local showNotification = false;
-    local playerPed = PlayerPedId()
+    local showNotification = false;    
     local tablePossition = vector3(Config.tablePossition.x, Config.tablePossition.y, Config.tablePossition.z)
 
 
     while true do           
         if isJudge then
-            if #(GetEntityCoords(playerPed) - tablePossition) < 5 then
+            if #(GetEntityCoords(PlayerPedId()) - tablePossition) < 5 then
                 if showNotification then                    
                     BeginTextCommandThefeedPost("STRING")
                     AddTextComponentSubstringPlayerName(Locales[Config.Locale]["press_e_to_open_menu"])

@@ -3,25 +3,16 @@ local loaded = false
 duiObj = false
 
 function LoadFos()
-    print("Loading starterd internally")
-    
-    duiObj = CreateDui('nui://cibb-xfactorfos/client/html/screen.html', Config.screen.width, Config.screen.height);
-    while not IsDuiAvailable(duiObj) do
-        Wait(0)
-    end
-    
-    local txd = CreateRuntimeTxd('cibbfos');
-    Wait(500)
-    local dui = GetDuiHandle(duiObj);        
-    Wait(500)
-    CreateRuntimeTextureFromDuiHandle(txd, 'equis', dui);
-    Wait(500)
-
     sfHandle = RequestScaleformMovie(Config.screen.sfName);
-    while not HasScaleformMovieLoaded(sfHandle) or not txd do            
+    duiObj = CreateDui('nui://cibb-xfactorfos/client/html/screen.html', Config.screen.width, Config.screen.height);
+    while not IsDuiAvailable(duiObj) or not HasScaleformMovieLoaded(sfHandle) do
         Wait(0)
     end
 
+    local txd = CreateRuntimeTxd('cibbfos');
+    local dui = GetDuiHandle(duiObj);
+    CreateRuntimeTextureFromDuiHandle(txd, 'equis', dui);
+    
     PushScaleformMovieFunction(sfHandle, 'SET_TEXTURE');
     PushScaleformMovieMethodParameterString('cibbfos'); 
     PushScaleformMovieMethodParameterString('equis'); 
@@ -36,10 +27,8 @@ function LoadFos()
         type = "startup",
         judges = Config.judges
     }))
-
-    Wait(1000)
+    
     loaded = true
-    print("Loaded")
 end
 
 CreateThread(function ()
@@ -52,12 +41,11 @@ CreateThread(function ()
                 0, Config.screen.coords.yRotation, 0,
                 2, 2, 2,Config.screen.scale * 1, Config.screen.scale * (9/16), 1,2);
             else
-                print("Loading")
                 LoadFos()
             end
             waitTime = 0
-        else
-            print("Not here")
+
+        else            
             waitTime = 1000
         end
 
